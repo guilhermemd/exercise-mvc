@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const {getCategories} = require("./controller/chuckController");
+const {getCategories, jokeByCategory} = require("./controller/chuckController");
 const path = require('path');
 
 require('dotenv').config()
@@ -16,5 +16,7 @@ app.get("/categories", getCategories);
 app.get('/', (_req, res) => {
   res.redirect('/categories')
 });
+
+app.get('/jokes/:category', jokeByCategory);
 
 app.listen(PORT,() => console.log('listen to the port' + PORT));

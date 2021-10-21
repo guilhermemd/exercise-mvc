@@ -1,7 +1,13 @@
 const axios = require("axios");
-const URL = "https://api.chucknorris.io/jokes/categories";
 
 async function chuckCategories() {
+  const URL = "https://api.chucknorris.io/jokes/categories";
   return (await axios(URL)).data;
 }
-module.exports = { chuckCategories };
+
+const jokeBycategoryAPI = async(category) => {
+  const URL = `https://api.chucknorris.io/jokes/random?category=${category}`;
+  const result =  (await axios(URL)).data.value;
+  return result;
+}
+module.exports = { chuckCategories, jokeBycategoryAPI };
